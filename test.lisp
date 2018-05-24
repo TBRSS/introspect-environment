@@ -21,7 +21,9 @@
 (test typexpand
   ;; might need to change this if an impl implements array as a macro
   ;; which is unlikely, of course, but...
-  (is (equal '(array integer (7)) (typexpand '(bar)))))
+  (is (equal (typexpand '(bar))
+             #-allegro '(array integer (7))
+             #+allegro '(array (integer * *) (7)))))
 
 (defmacro in-environment (eparam name wrapper &body expr)
   `(macrolet ((,name (&environment ,eparam)

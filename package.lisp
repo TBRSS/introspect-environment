@@ -12,6 +12,11 @@
   (:shadowing-import-from #+sbcl "SB-CLTL2" #+ccl "CCL" #+cmucl "EXT"
 			  #:function-information #:variable-information
 			  #:declaration-information #:parse-macro)
+  #+allegro
+  (:shadowing-import-from "SYSTEM"
+    #:variable-information
+    #:function-information
+    #:declaration-information)
   #+sbcl
   (:shadowing-import-from "SB-EXT"
 			  #:typexpand #:typexpand-1)
