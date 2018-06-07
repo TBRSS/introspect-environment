@@ -32,7 +32,7 @@
              qualities)
 	 ;; CLHS 11.1.2.1.2.1 (ref because wow obscure) explicitly
 	 ;; allows standard symbols that aren't variables
-	 ;; to be symbol-macrolut.
+	 ;; to be symbol-macrolet.
 	 ;; This may not be true of implementation-specific packages.
 	 ,expr))))
 
@@ -44,13 +44,9 @@
 
 (defun typexpand-1 (type &optional env)
   "This implementation is not supported; no types are expanded."
-  (declare (ignore env))
-  (check-type type (or symbol cons class) "a type specifier")
-  (values type nil))
+  (excl::deftype-expand-1 type env))
 (defun typexpand (type &optional env)
-  (excl:normalize-type type
-                       :environment env
-                       :default type))
+  (excl::deftype-expand type env))
 
 (defun constant-form-value (form &optional env)
   (sys:constant-value form env))
